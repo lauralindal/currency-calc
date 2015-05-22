@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+   <meta charset="UTF-8">
+   <title>Währungsrechner</title>
+   <meta name="description" content="Währungsrechner für alle gängigen Währungen">
+   <link rel="stylesheet" href="css/normalize.css">
+   <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+   <h1>Währungsrechner</h1>
+
+   <div class="container">
+
+      <div class="error-msg">Ein unerwarteter Fehler ist aufgetreten.</div>
+
+      <form name="exchange" class="amount">
+
+         <input name="from-value" type="number" step="any" autofocus>
+         <select name="from-currency" id="from-currency">
+            <!-- Currencies -->
+         </select>
+
+         <input name="to-value" type="number" step="any">
+         <select name="to-currency" id="to-currency">
+            <!-- Currencies -->
+         </select>
+
+      </form>
+
+      <div class="overview">
+         <!-- Overview -->
+      </div>
+
+   </div> <!-- /.container -->
+
+   <script src="js/jquery-2.1.4.min.js"></script>
+   <script src="js/currencies.json.js"></script>
+   <script src="js/script.js"></script>
+
+</body>
+
+</html>
