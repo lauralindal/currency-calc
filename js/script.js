@@ -1,7 +1,7 @@
 $(function() {
 
    // Variablen
-   var api_url = 'http://localhost/Wechselkursrechner/api/';
+   var api_url = '/api/';
    var fav_currencies = ['EUR', 'USD', 'GBP', 'CHF', 'ILS', 'CNY', 'JPY', 'SGD'];
    var currencies = window.currencies;
    var rates = {};
@@ -79,7 +79,7 @@ $(function() {
             if (callback) callback();
          })
          .error(function() {
-            $('.error-msg').fadeIn('slow');
+            //$('.error-msg').fadeIn('slow');
          });
    };
 
