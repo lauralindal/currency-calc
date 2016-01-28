@@ -1,7 +1,7 @@
 $(function() {
 
    // Variablen
-   var api_url = 'http://localhost/Wechselkursrechner/api/';
+   var api_url = 'http://localhost/currency-calc/api/';
    var fav_currencies = ['EUR', 'USD', 'GBP', 'CHF', 'ILS', 'CNY', 'JPY', 'SGD'];
    var currencies = window.currencies;
    var rates = {};
@@ -54,12 +54,19 @@ $(function() {
    // Funktionen (als Ausdrücke, nicht Deklarationen)
 
    var initialize = function() {
-      // hole gleich zu Beginn frische Daten vom Server und führe danach die folgende Funktion aus
-      fetchData(function() {
-         input_from.value = '100';
-         updateInputFields(input_from);
-         updateOverview(input_from.value, select_from.value);
-      });
+
+     var online = window.navigator.onLine;
+     if(!online){
+       rates = JSON.parse(localStorage.getItem('rates'));
+     }
+     else {
+        // hole gleich zu Beginn frische Daten vom Server und führe danach die folgende Funktion aus
+        fetchData(function() {
+           input_from.value = '100';
+           updateInputFields(input_from);
+           updateOverview(input_from.value, select_from.value);
+        });
+      }
 
       updateSelections();
 
@@ -69,6 +76,7 @@ $(function() {
    };
 
    var fetchData = function(callback) {
+
       $.ajax({
          url: api_url,
          dataType: 'jsonp',
@@ -76,6 +84,7 @@ $(function() {
       })
          .success(function(data) {
             rates = data.rates;
+            localStorage.setItem('rates', JSON.stringify(rates));
             if (callback) callback();
          })
          .error(function() {
