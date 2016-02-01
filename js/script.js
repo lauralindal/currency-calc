@@ -1,7 +1,7 @@
 $(function() {
 
    // Variablen
-   var api_url = 'http://localhost/currency-calc/api/';
+   var api_url = '/currency-calc/api/';
    var fav_currencies = ['EUR', 'USD', 'GBP', 'CHF', 'ILS', 'CNY', 'JPY', 'SGD'];
    var currencies = window.currencies;
    var rates = {};
