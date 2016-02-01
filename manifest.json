@@ -1,0 +1,8 @@
+{
+   "name": "Currency Calculator",
+   "short_name": "MyApp",
+   "icons": [ ... ],
+   "start_url": "index.html",
+   "display": "standalone",
+   "orientation": "landscape"
+}
