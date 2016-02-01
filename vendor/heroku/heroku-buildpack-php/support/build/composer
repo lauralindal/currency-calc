@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Build Path: /app/.heroku/php/
+# Build Deps: php-5.5.12
+
+OUT_PREFIX=$1
+
+# fail hard
+set -o pipefail
+# fail harder
+set -eux
+
+DEFAULT_VERSION="1.0.0-alpha11"
+dep_version=${VERSION:-$DEFAULT_VERSION}
+
+echo "-----> Bundling Composer (${dep_version})..."
+
+export PATH=${OUT_PREFIX}/bin:$PATH
+
+curl -sS https://getcomposer.org/installer | php -- --version=${dep_version}
+
+php composer.phar --version
+
+rm -rf ${OUT_PREFIX}/*
+mkdir -p ${OUT_PREFIX}/bin
+
+mv composer.phar ${OUT_PREFIX}/bin/composer
+
+echo "-----> Done."
